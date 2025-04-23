@@ -13,3 +13,5 @@ __pycache__/
 
 # JetBrains IDE settings
 .idea/
+
+README.md
