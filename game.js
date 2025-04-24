@@ -48,7 +48,7 @@ function create() {
 // Adding blue circle 
 const circleRadius = 30;
 const circleX = this.sys.game.canvas.width / 2;
-const circleY = this.sys.game.canvas.height * 2 / 3 + 50
+const circleY = this.sys.game.canvas.height * 2 / 3 + 50;
 
 //Create graphics object for circle 
 const circle = this.add.graphics();
