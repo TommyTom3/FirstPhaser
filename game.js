@@ -12,8 +12,15 @@ const config = {
     },
     scale: {
         mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH
-    }
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 800,
+        height: 600,
+        min: {
+            width: 320,
+            height: 240
+        }
+    },
+    pixelArt: false
 };
 
 const game = new Phaser.Game(config);
@@ -29,8 +36,8 @@ function create() {
     const rect = this.add.rectangle(
         this.cameras.main.centerX,
         this.cameras.main.centerY,
-        this.sys.game.canvas.width,
-        this.sys.game.canvas.height,
+        this.cameras.main.width,
+        this.cameras.main.height,
         0x00ff00
     ).setOrigin(0.5);   
 
@@ -47,8 +54,8 @@ function create() {
 
 // Adding blue circle 
 const circleRadius = 30;
-const circleX = this.sys.game.canvas.width / 2;
-const circleY = this.sys.game.canvas.height * 2 / 3 + 50;
+const circleX = this.cameras.main.centerX;
+const circleY = this.cameras.main.height * 2 / 3 + 50;
 
 //Create graphics object for circle 
 const circle = this.add.graphics();
@@ -68,13 +75,9 @@ circle.setInteractive(
 this.input.setDraggable(circle);
 circle.on('drag', (pointer, dragX, dragY) => {
 
-    const worldPoint = this.cameras.main.getWorldPoint(pointer.x, pointer.y);
-    const adjustedX = worldPoint.x;
-    const adjustedY = worldPoint.y;
-    //this updates while dragging
-    circle.clear();
-    circle.fillStyle(0x0000ff, 1);
-    circle.fillCircle(adjustedX, adjustedY, circleRadius);
+   circle.clear();
+   circle.fillStyle(0x0000ff, 1);
+   circle.fillCircle(dragX, dragY, circleRadius);
 
     // Update interactive area to follow circle 
     circle.input.hitArea.setTo(adjustedX, adjustedY, circleRadius);

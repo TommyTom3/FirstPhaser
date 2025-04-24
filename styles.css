@@ -3,19 +3,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: rgb(164, 95, 6);
+    overflow: hidden;
 }
 
 #game-container {
-    border: 2px solid #333;
+    width: 100vw;
+    height: 100vh;
     max-width: 800px;
     max-height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 2px solid #333;
+    box-sizing: border-box;
 }
 
 #game-container canvas {
     display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    max-height: 600px;
 }
