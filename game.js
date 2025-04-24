@@ -60,14 +60,16 @@ const circleY = this.cameras.main.height * 2 / 3 + 50;
 //Create graphics object for circle 
 const circle = this.add.graphics();
 circle.fillStyle(0x0000ff, 1);
-circle.fillCircle(circleX, circleY, circleRadius);
+circle.fillCircle(0, 0, circleRadius);
+
+circle.setPosition(circleX, circleY);
 
 // Bring to front 
 circle.setDepth(10);
 
 //Make circle interactive
 circle.setInteractive(
-    new Phaser.Geom.Circle(circleX, circleY, circleRadius),
+    new Phaser.Geom.Circle(0, 0, circleRadius),
     Phaser.Geom.Circle.Contains
 );
 
@@ -75,12 +77,9 @@ circle.setInteractive(
 this.input.setDraggable(circle);
 circle.on('drag', (pointer, dragX, dragY) => {
 
-   circle.clear();
-   circle.fillStyle(0x0000ff, 1);
-   circle.fillCircle(dragX, dragY, circleRadius);
+    circle.setPosition(dragX, dragY);
 
-    // Update interactive area to follow circle 
-    circle.input.hitArea.setTo(adjustedX, adjustedY, circleRadius);
+
 });
 
 }
